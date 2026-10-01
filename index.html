@@ -80,7 +80,7 @@ function startAgent(){
    let d=await r.json(); let ans=d.candidates[0].content.parts[0].text;
    document.getElementById('chatbox').innerHTML+=`<p><b>Ada:</b> ${ans}</p>`; document.getElementById('chatbox').scrollTop=9999;
    let u=new SpeechSynthesisUtterance(ans); u.pitch=1.2; u.rate=0.95; synth.speak(u); document.getElementById('status').innerText="✅ Done. Tap again";
-  }catch{ document.getElementById('status').innerText="❌ Check API Key - Paste new one"; }
+  }catch{ document.getElementById('status').innerText="AQ.Ab8RN6JwEvRD83y5X99CrKRLzGYN23sZ9-S9v1l46JLTib9XiQ"; }
  }
 }
 </script>
