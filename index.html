@@ -8,8 +8,15 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Montserrat',sans-serif;background:#000;color:#fff}
-nav{background:#0f172a;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;border-bottom:3px solid #8B4513}
+nav{background:#0f172a;padding:15px 20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px;position:sticky;top:0;z-index:99;border-bottom:3px solid #8B4513}
 nav h1{font-weight:900;font-size:18px} nav h1 span{color:#D2A679}
+.nav-left{justify-self:start}
+.nav-logo{justify-self:center}
+.nav-logo img{height:58px;width:auto;display:block}
+.nav-about{justify-self:end;text-align:right;max-width:300px;font-size:10px;line-height:1.45;color:#cbd5e1}
+.nav-about b{display:block;color:#D2A679;font-weight:900;font-size:11px;margin-bottom:3px}
+.nav-about em{font-style:normal;color:#fff;font-weight:800}
+.nav-about p{font-weight:700;margin-top:3px}
 .hero{background:linear-gradient(rgba(0,0,0,.7),rgba(15,23,42,.9)),url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9');background-size:cover;padding:60px 20px;text-align:center}
 .hero h2{font-size:32px;font-weight:900;line-height:1.1;text-transform:uppercase}.hero h2 b{color:#D2A679}
 .btn{padding:16px 30px;border-radius:30px;border:none;font-weight:900;font-family:Montserrat;cursor:pointer;margin:8px;display:inline-block;text-decoration:none;font-size:14px}
@@ -21,14 +28,34 @@ nav h1{font-weight:900;font-size:18px} nav h1 span{color:#D2A679}
 .grid img{width:100%;height:170px;object-fit:cover;border-radius:14px}
 .ai-box{background:#fff;color:#111;border-radius:25px;padding:25px;max-width:450px;margin:30px auto;border:4px solid #8B4513}
 .avatar{width:130px;height:130px;border-radius:50%;object-fit:cover;border:4px solid #0f172a;display:block;margin:0 auto;background:#ddd}
-.talk{background:#0f172a;color:#fff;padding:18px;border-radius:30px;width:100%;font-weight:900;font-size:18px;border:none;margin-top:15px}
+.talk{background:#0f172a;color:#fff;padding:18px;border-radius:30px;width:100%;font-weight:900;font-size:18px;border:none;margin-top:15px;cursor:pointer;font-family:Montserrat}
 #chatbox{background:#f1f5f9;border-radius:12px;padding:10px;margin-top:15px;max-height:200px;overflow:auto;text-align:left;font-size:13px;font-family:Arial;color:#111}
+.type-row{display:flex;gap:8px;margin-top:12px}
+.type-row input{flex:1;padding:12px 14px;border-radius:25px;border:2px solid #0f172a;font-size:14px;font-family:Arial;color:#111;outline:none}
+.type-row input:focus{border-color:#8B4513}
+.type-row button{background:#8B4513;color:#fff;border:none;border-radius:25px;padding:12px 18px;font-weight:900;font-family:Montserrat;cursor:pointer}
+.voice-toggle{display:block;margin:10px auto 0;background:none;border:none;color:#1e3a8a;font-weight:800;font-size:11px;font-family:Montserrat;cursor:pointer}
 .footer{background:#0a0a0a;border-top:3px solid #8B4513;padding:25px;text-align:center;font-size:12px;color:#aaa}
 .wa-float{background:#25D366;color:#fff;padding:14px 20px;border-radius:30px;position:fixed;bottom:20px;right:15px;font-weight:900;text-decoration:none;z-index:999}
+@media(max-width:760px){
+ nav{grid-template-columns:1fr;justify-items:center;text-align:center;gap:8px}
+ .nav-left,.nav-about{justify-self:center;text-align:center}
+ .nav-left{order:2}.nav-logo{order:1}.nav-about{order:3}
+ .hero h2{font-size:26px}
+}
 </style>
 </head>
 <body>
-<nav><h1>NETCOM <span>MEDIA</span></h1><p style="font-size:10px">SAMPLE</p></nav>
+<nav>
+ <div class="nav-left"><h1>NETCOM <span>MEDIA</span></h1><p style="font-size:10px">SAMPLE</p></div>
+ <div class="nav-logo"><img src="logo.png" alt="Netcom Media logo"></div>
+ <div class="nav-about">
+  <b>About Netcom Media</b>
+  We build intelligent AI ecosystems that work for your business while you rest.
+  <p><em>Web Creation &amp; Hosting</em><br>Stunning, fast, and responsive websites</p>
+  <p><em>Commercial Video Ads</em><br>High-impact commercial video advertisements and promotional shorts.</p>
+ </div>
+</nav>
 <div class="hero">
 <span class="badge">SAMPLE FOR ESTY</span>
 <h2>WE BUILD <b>AI VOICE AGENTS</b> THAT CLOSE SALES 24/7</h2>
@@ -58,30 +85,126 @@ nav h1{font-weight:900;font-size:18px} nav h1 span{color:#D2A679}
 <div class="ai-box">
 <img src="avatar.jpg" class="avatar" onerror="this.src='https://i.pravatar.cc/300?img=32'">
 <h3 style="text-align:center;margin:10px 0;font-weight:900">ADA - AI AGENT 🎧</h3>
-<p style="text-align:center;font-size:12px;color:#555">Tap and tell me: land or supplement?</p>
+<p style="text-align:center;font-size:12px;color:#555">Tap and tell me, or type below: land or supplement?</p>
 <button class="talk" id="talkBtn" onclick="startAgent()">🎤 TAP TO TALK TO ADA</button>
 <p id="status" style="text-align:center;font-size:12px;margin-top:10px;color:#1e3a8a;font-weight:800">Ready...</p>
 <div id="chatbox"></div>
+<div class="type-row">
+ <input id="msgInput" type="text" placeholder="Type your message..." autocomplete="off">
+ <button id="sendBtn">SEND</button>
+</div>
+<button class="voice-toggle" id="voiceToggle">🔊 Ada's voice: ON</button>
 </div>
 </div>
 <div class="footer">© 2026 Netcom Media - AI Division<br><b style="color:#D2A679">ncmediaaipro.com | +2348037195305</b><br>Sample Design for ESTY</div>
 <a class="wa-float" href="https://wa.me/2348037195305">💬 Chat</a>
 <script>
-const API_KEY = "AQ.Ab8RN6JllCEBO3L3jYJnzgxQMWzxoTNqTfBKGN9fwQYynx_FpQ";
-const PROMPT = "You are Ada, female Nigerian AI sales agent for Netcom Media, brown and navy brand. Sell Ibeju-Lekki 1.5M, Epe 900k, Ikorodu lands, documents no Omonile. Sell original supplements. Keep reply 2 short sentences. Ask name, interest, budget. Forward to WhatsApp +2348037195305. Builder is Netcom Media ncmediaaipro.com";
-let rec; let synth=window.speechSynthesis;
+const WORKER_URL = "https://esty-test.netcommed.workers.dev";
+
+const chatbox = document.getElementById('chatbox');
+const statusEl = document.getElementById('status');
+const talkBtn = document.getElementById('talkBtn');
+const input = document.getElementById('msgInput');
+const synth = window.speechSynthesis;
+let history = [];
+let voiceOn = true;
+let voices = [];
+let rec = null;
+
+function loadVoices(){ voices = synth ? synth.getVoices() : []; }
+if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
+
+function pickVoice(){
+  const en = voices.filter(v => /^en/i.test(v.lang));
+  return en.find(v => /female|zira|samantha|susan|hazel|aria|jenny|google uk english female/i.test(v.name))
+      || en.find(v => /en-(NG|GB|ZA)/i.test(v.lang))
+      || en[0] || null;
+}
+
+function unlockAudio(){
+  if (!synth) return;
+  try {
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    synth.speak(u);
+  } catch(e){}
+}
+
+function speak(text){
+  if (!synth || !voiceOn) return;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace(/[*_#`]/g,''));
+  const v = pickVoice();
+  if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
+  u.pitch = 1.2; u.rate = 0.95; u.volume = 1;
+  u.onstart = () => statusEl.innerText = "🔊 Ada speaking...";
+  u.onend = () => statusEl.innerText = "✅ Done. Tap or type again";
+  u.onerror = () => statusEl.innerText = "✅ Done. Tap or type again";
+  synth.speak(u);
+  if (synth.paused) synth.resume();
+}
+
+document.getElementById('voiceToggle').onclick = function(){
+  voiceOn = !voiceOn;
+  this.innerText = "🔊 Ada's voice: " + (voiceOn ? "ON" : "OFF");
+  if (!voiceOn && synth) synth.cancel();
+  else unlockAudio();
+};
+
+function addLine(who, text){
+  const p = document.createElement('p');
+  const b = document.createElement('b');
+  b.textContent = who + ": ";
+  p.appendChild(b);
+  p.appendChild(document.createTextNode(text));
+  chatbox.appendChild(p);
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+async function askAda(txt){
+  addLine("You", txt);
+  history.push({ role: "user", text: txt });
+  statusEl.innerText = "🤖 Ada thinking...";
+  try {
+    const r = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history })
+    });
+    const d = await r.json();
+    if (!d.reply) throw new Error(d.error || "No reply");
+    history.push({ role: "model", text: d.reply });
+    addLine("Ada", d.reply);
+    speak(d.reply);
+    if (!voiceOn) statusEl.innerText = "✅ Done. Tap or type again";
+  } catch (err) {
+    history.pop();
+    statusEl.innerText = "⚠️ Ada is unavailable right now. Please try again or WhatsApp us.";
+  }
+}
+
+function sendTyped(){
+  const t = input.value.trim();
+  if (!t) return;
+  unlockAudio();
+  input.value = "";
+  askAda(t);
+}
+document.getElementById('sendBtn').onclick = sendTyped;
+input.addEventListener('keydown', e => { if (e.key === "Enter") sendTyped(); });
+
 function startAgent(){
- let btn=document.getElementById('talkBtn'); btn.innerText="🔴 LISTENING..."; document.getElementById('status').innerText="🎤 Listening...";
- let SR=window.SpeechRecognition||window.webkitSpeechRecognition; rec=new SR(); rec.lang="en-US"; rec.start();
- rec.onresult=async e=>{
-  let txt=e.results[0][0].transcript; document.getElementById('chatbox').innerHTML+=`<p><b>You:</b> ${txt}</p>`; document.getElementById('status').innerText="🤖 Ada thinking..."; btn.innerText="🎤 TAP TO TALK TO ADA";
-  try{
-   let r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:PROMPT+"\nCustomer: "+txt}]}]})});
-   let d=await r.json(); let ans=d.candidates[0].content.parts[0].text;
-   document.getElementById('chatbox').innerHTML+=`<p><b>Ada:</b> ${ans}</p>`; document.getElementById('chatbox').scrollTop=9999;
-   let u=new SpeechSynthesisUtterance(ans); u.pitch=1.2; u.rate=0.95; synth.speak(u); document.getElementById('status').innerText="✅ Done. Tap again";
-  }catch{ document.getElementById('status').innerText="AQ.Ab8RN6JwEvRD83y5X99CrKRLzGYN23sZ9-S9v1l46JLTib9XiQ"; }
- }
+  unlockAudio();
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { statusEl.innerText = "Voice input not supported here. Please type instead."; input.focus(); return; }
+  if (synth) synth.cancel();
+  rec = new SR(); rec.lang = "en-US"; rec.interimResults = false;
+  talkBtn.innerText = "🔴 LISTENING...";
+  statusEl.innerText = "🎤 Listening...";
+  rec.onresult = e => askAda(e.results[0][0].transcript);
+  rec.onerror = () => { statusEl.innerText = "Couldn't hear you. Tap again or type."; };
+  rec.onend = () => { talkBtn.innerText = "🎤 TAP TO TALK TO ADA"; };
+  rec.start();
 }
 </script>
 </body>
