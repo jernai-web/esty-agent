@@ -1,211 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Netcom Media AI Sample - ESTY Project</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ESTY Business Consultant | Lands in Lagos & Health Supplements</title>
+<meta name="description" content="Talk to Ada, the ESTY AI assistant, about affordable lands in Ibeju-Lekki, Epe and Ikorodu, and health supplements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Montserrat',sans-serif;background:#000;color:#fff}
-nav{background:#0f172a;padding:15px 20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px;position:sticky;top:0;z-index:99;border-bottom:3px solid #8B4513}
-nav h1{font-weight:900;font-size:18px} nav h1 span{color:#D2A679}
-.nav-left{justify-self:start}
-.nav-logo{justify-self:center}
-.nav-logo img{height:58px;width:auto;display:block}
-.nav-about{justify-self:end;text-align:right;max-width:300px;font-size:10px;line-height:1.45;color:#cbd5e1}
-.nav-about b{display:block;color:#D2A679;font-weight:900;font-size:11px;margin-bottom:3px}
-.nav-about em{font-style:normal;color:#fff;font-weight:800}
-.nav-about p{font-weight:700;margin-top:3px}
-.hero{background:linear-gradient(rgba(0,0,0,.7),rgba(15,23,42,.9)),url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9');background-size:cover;padding:60px 20px;text-align:center}
-.hero h2{font-size:32px;font-weight:900;line-height:1.1;text-transform:uppercase}.hero h2 b{color:#D2A679}
-.btn{padding:16px 30px;border-radius:30px;border:none;font-weight:900;font-family:Montserrat;cursor:pointer;margin:8px;display:inline-block;text-decoration:none;font-size:14px}
-.btn-brown{background:#8B4513;color:#fff}.btn-navy{background:#1e3a8a;color:#fff;border:2px solid #D2A679}
-.section{padding:45px 20px;max-width:1100px;margin:auto}
-.badge{background:#8B4513;padding:6px 16px;border-radius:20px;font-size:11px;display:inline-block;margin-bottom:12px;font-weight:800}
-.card{background:#111;border:1px solid #222;border-radius:18px;padding:15px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin-top:20px}
-.grid img{width:100%;height:170px;object-fit:cover;border-radius:14px}
-.ai-box{background:#fff;color:#111;border-radius:25px;padding:25px;max-width:450px;margin:30px auto;border:4px solid #8B4513}
-.avatar{width:130px;height:130px;border-radius:50%;object-fit:cover;border:4px solid #0f172a;display:block;margin:0 auto;background:#ddd}
-.talk{background:#0f172a;color:#fff;padding:18px;border-radius:30px;width:100%;font-weight:900;font-size:18px;border:none;margin-top:15px;cursor:pointer;font-family:Montserrat}
-#chatbox{background:#f1f5f9;border-radius:12px;padding:10px;margin-top:15px;max-height:200px;overflow:auto;text-align:left;font-size:13px;font-family:Arial;color:#111}
-.type-row{display:flex;gap:8px;margin-top:12px}
-.type-row input{flex:1;padding:12px 14px;border-radius:25px;border:2px solid #0f172a;font-size:14px;font-family:Arial;color:#111;outline:none}
-.type-row input:focus{border-color:#8B4513}
-.type-row button{background:#8B4513;color:#fff;border:none;border-radius:25px;padding:12px 18px;font-weight:900;font-family:Montserrat;cursor:pointer}
-.voice-toggle{display:block;margin:10px auto 0;background:none;border:none;color:#1e3a8a;font-weight:800;font-size:11px;font-family:Montserrat;cursor:pointer}
-.footer{background:#0a0a0a;border-top:3px solid #8B4513;padding:25px;text-align:center;font-size:12px;color:#aaa}
-.wa-float{background:#25D366;color:#fff;padding:14px 20px;border-radius:30px;position:fixed;bottom:20px;right:15px;font-weight:900;text-decoration:none;z-index:999}
-@media(max-width:760px){
- nav{grid-template-columns:1fr;justify-items:center;text-align:center;gap:8px}
- .nav-left,.nav-about{justify-self:center;text-align:center}
- .nav-left{order:2}.nav-logo{order:1}.nav-about{order:3}
- .hero h2{font-size:26px}
+:root{
+  --bg:#1d1b1a;
+  --panel:#272321;
+  --panel-2:#322c28;
+  --line:rgba(222,196,160,.2);
+  --blue:#b8763a;
+  --sky:#e6b878;
+  --text:#f6eee4;
+  --mute:#c2b3a0;
+  --ok:#9bd6a4;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  padding-bottom:env(safe-area-inset-bottom,0);
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+
+/* Header: name left, logo centre, about right */
+header{border-bottom:1px solid var(--line);padding:18px 0}
+.head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.brand{color:#f6d9ad;font-weight:800;font-size:1.05rem;letter-spacing:.01em}
+.brand small{display:block;font-weight:500;color:var(--mute);font-size:.82rem}
+.logo{display:flex;justify-content:center}
+.logo img{height:52px;width:auto;max-width:180px;object-fit:contain}
+.logo .logo-fallback{display:none;font-weight:800;font-size:1.1rem}
+.about{justify-self:end;text-align:right;max-width:300px;font-size:.82rem;color:var(--mute)}
+.about b{color:#e6b878;display:block;font-size:.88rem}
+
+/* Hero */
+.hero{padding:44px 0 28px}
+.hero h1{color:#f6d9ad;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;max-width:16ch}
+.hero p.lead{margin-top:16px;color:var(--mute);font-size:1.08rem;max-width:52ch}
+
+.stage{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:28px;align-items:start;margin-top:34px}
+
+/* Avatar */
+.avatar-box{
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px 22px;text-align:center;
+  position:sticky;top:16px;
+}
+.avatar{position:relative;width:min(260px,64vw);aspect-ratio:1;margin:0 auto}
+.avatar .ring,.avatar .ring2{
+  position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--sky);opacity:0;
+}
+.avatar img,.avatar .avatar-fallback{
+  position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;
+  border:4px solid var(--bg);box-shadow:0 0 0 2px var(--blue);
+  transition:transform .18s ease;
+}
+.avatar .avatar-fallback{
+  display:none;align-items:center;justify-content:center;font-size:5rem;font-weight:800;
+  background:linear-gradient(135deg,var(--blue),#6b3f1d);
+}
+body.speaking .avatar .ring{animation:ring 1.6s ease-out infinite}
+body.speaking .avatar .ring2{animation:ring 1.6s ease-out .8s infinite}
+body.speaking .avatar img,body.speaking .avatar .avatar-fallback{animation:talk .42s ease-in-out infinite alternate}
+body.listening .avatar .ring{opacity:.9;border-color:var(--ok);animation:none}
+@keyframes ring{0%{transform:scale(.96);opacity:.7}100%{transform:scale(1.14);opacity:0}}
+@keyframes talk{from{transform:scale(1)}to{transform:scale(1.025) translateY(-1px)}}
+
+.name{color:#f6d9ad;margin-top:18px;font-weight:800;font-size:1.25rem}
+.role{color:#d99a5b;font-size:.9rem}
+.bars{display:flex;justify-content:center;align-items:flex-end;gap:4px;height:26px;margin:14px 0 6px}
+.bars i{width:5px;height:6px;border-radius:3px;background:var(--sky);opacity:.45;transition:opacity .2s}
+body.speaking .bars i{opacity:1;animation:bar .5s ease-in-out infinite alternate}
+body.speaking .bars i:nth-child(2){animation-delay:.1s}
+body.speaking .bars i:nth-child(3){animation-delay:.2s}
+body.speaking .bars i:nth-child(4){animation-delay:.05s}
+body.speaking .bars i:nth-child(5){animation-delay:.15s}
+@keyframes bar{from{height:5px}to{height:24px}}
+#status{font-size:.9rem;color:var(--mute);min-height:1.4em}
+body.listening #status{color:var(--ok)}
+
+.talkbtn{
+  margin-top:14px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--blue);color:#fff;border:none;border-radius:999px;padding:15px 20px;
+  font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer;
+}
+.talkbtn:hover{background:#9c5f2a}
+body.listening .talkbtn{background:var(--ok);color:#10281a}
+
+/* Chat */
+.chat{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  display:flex;flex-direction:column;height:min(640px,78vh);overflow:hidden;
+}
+.chat-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.chat-top h2{color:#f6d9ad;font-size:1rem;font-weight:700}
+.chat-top h2 span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ok);margin-right:8px}
+.ghost{
+  background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;
+  padding:7px 14px;font:inherit;font-size:.85rem;cursor:pointer;min-height:36px;
+}
+.ghost:hover{background:rgba(255,255,255,.06)}
+.ghost[aria-pressed="false"]{color:var(--mute)}
+#log{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msg{max-width:84%;padding:11px 15px;border-radius:16px;font-size:.96rem;white-space:pre-wrap;word-wrap:break-word}
+.msg.ada{color:#f6eee4;background:var(--panel-2);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.you{background:var(--blue);border-bottom-right-radius:4px;align-self:flex-end}
+.msg a.cta{
+  display:inline-block;margin-top:10px;background:#22c55e;color:#06260f;font-weight:700;text-decoration:none;
+  padding:10px 16px;border-radius:999px;
+}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:14px 16px;background:var(--panel-2);border-radius:16px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
+.chip{
+  background:transparent;border:1px solid var(--sky);color:var(--sky);border-radius:999px;
+  padding:7px 14px;font:inherit;font-size:.85rem;cursor:pointer;min-height:36px;
+}
+.chip:hover{background:rgba(230,184,120,.14)}
+
+.composer{display:flex;gap:10px;padding:14px 18px;border-top:1px solid var(--line);align-items:center}
+.composer input{
+  flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:999px;
+  color:var(--text);padding:13px 18px;font:inherit;font-size:1rem;
+}
+.composer input::placeholder{color:#8d7f6e}
+.iconbtn,.send{
+  border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;display:grid;place-items:center;
+  background:var(--blue);color:#fff;flex:none;
+}
+.iconbtn{background:var(--panel-2);border:1px solid var(--line)}
+body.listening .iconbtn{background:var(--ok);color:#06260f;border-color:var(--ok)}
+.send:hover{background:#9c5f2a}
+svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Photos */
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.photos:empty{display:none}
+.photo{margin:0 0 20px;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:var(--panel-2);border:1px solid var(--line)}
+.photos .photo{margin:0}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* What we offer */
+.offer{padding:56px 0 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px}
+.offer h2{color:#e6b878;font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.offer p.sub{color:var(--mute);margin-bottom:18px;max-width:50ch}
+.places{list-style:none;border-top:1px solid var(--line)}
+.places li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.places b{display:block;color:#f6d9ad}
+.places span{color:var(--mute);font-size:.92rem}
+.places button{align-self:center}
+.supp ul{list-style:none;margin-top:6px}
+.supp li{padding:10px 0 10px 28px;position:relative;color:var(--text)}
+.supp li:before{content:"";position:absolute;left:0;top:18px;width:14px;height:2px;background:var(--sky)}
+.talk-cta{
+  margin-top:20px;background:var(--blue);color:#fff;border:none;border-radius:999px;padding:14px 26px;
+  font:inherit;font-weight:700;font-size:1rem;cursor:pointer;
+}
+.talk-cta:hover{background:#9c5f2a}
+
+footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 0 34px;color:var(--mute);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .head{grid-template-columns:1fr;text-align:center;gap:10px}
+  .brand,.about{justify-self:center;text-align:center}
+  .logo{order:-1}
+  .stage,.offer{grid-template-columns:1fr}
+  .avatar-box{position:static}
+  .chat{height:70vh}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 <body>
-<nav>
- <div class="nav-left"><h1>NETCOM <span>MEDIA</span></h1><p style="font-size:10px">SAMPLE</p></div>
- <div class="nav-logo"><img src="logo.png" alt="nm-logo.png"></div>
- <div class="nav-about">
-  <b>About Netcom Media</b>
-  We build intelligent AI ecosystems that work for your business while you rest.
-  <p><em>Web Creation &amp; Hosting</em><br>Stunning, fast, and responsive websites</p>
-  <p><em>Commercial Video Ads</em><br>High-impact commercial video advertisements and promotional shorts.</p>
- </div>
-</nav>
-<div class="hero">
-<span class="badge">SAMPLE FOR ESTY</span>
-<h2>WE BUILD <b>AI VOICE AGENTS</b> THAT CLOSE SALES 24/7</h2>
-<p style="margin:20px 0;opacity:.8;font-weight:700">For Real Estate & Supplements Business</p>
-<a href="#ai" class="btn btn-brown">🎙️ TALK TO ADA</a>
-<a href="https://wa.me/2348037195305" class="btn btn-navy">WhatsApp Us</a>
-</div>
-<div class="section">
-<span class="badge">REAL ESTATE</span>
-<h2 style="font-weight:900">VERIFIED LAGOS LANDS</h2>
-<div class="grid">
-<div class="card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef"><h4>Ibeju-Lekki</h4><p style="font-size:12px;color:#aaa">From ₦1.5M - Near Refinery</p></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1449844908441-8829872d2607"><h4>Epe</h4><p style="font-size:12px;color:#aaa">From ₦900k - Documented</p></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"><h4>Ikorodu</h4><p style="font-size:12px;color:#aaa">Installment Allowed</p></div>
-</div>
-</div>
-<div class="section" style="background:#0f172a;border-radius:30px">
-<span class="badge" style="background:#D2A679;color:#000">SUPPLEMENTS</span>
-<h2 style="font-weight:900">ORIGINAL HEALTH PRODUCTS</h2>
-<div class="grid">
-<div class="card" style="border:2px solid #1e3a8a"><img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de"><h4 style="color:#D2A679">Immune Booster</h4></div>
-<div class="card" style="border:2px solid #1e3a8a"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae"><h4 style="color:#D2A679">Weight Loss</h4></div>
-<div class="card" style="border:2px solid #1e3a8a"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136"><h4 style="color:#D2A679">Fertility & Sugar</h4></div>
-</div>
-</div>
-<div class="section" id="ai">
-<div class="ai-box">
-<img src="avatar.jpg" class="avatar" onerror="this.src='https://i.pravatar.cc/300?img=32'">
-<h3 style="text-align:center;margin:10px 0;font-weight:900">ADA - AI AGENT 🎧</h3>
-<p style="text-align:center;font-size:12px;color:#555">Tap and tell me, or type below: land or supplement?</p>
-<button class="talk" id="talkBtn" onclick="startAgent()">🎤 TAP TO TALK TO ADA</button>
-<p id="status" style="text-align:center;font-size:12px;margin-top:10px;color:#1e3a8a;font-weight:800">Ready...</p>
-<div id="chatbox"></div>
-<div class="type-row">
- <input id="msgInput" type="text" placeholder="Type your message..." autocomplete="off">
- <button id="sendBtn">SEND</button>
-</div>
-<button class="voice-toggle" id="voiceToggle">🔊 Ada's voice: ON</button>
-</div>
-</div>
-<div class="footer">© 2026 Netcom Media - AI Division<br><b style="color:#D2A679">ncmediaaipro.com | +2348037195305</b><br>Sample Design for ESTY</div>
-<a class="wa-float" href="https://wa.me/2348037195305">💬 Chat</a>
+
+<header>
+  <div class="wrap head">
+    <div class="brand">ESTY Business Consultant<small>Real estate &amp; health supplements</small></div>
+    <div class="logo">
+      <img src="nm-logo.png" alt="Netcom Media logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-fallback">NETCOM Media</span>
+    </div>
+    <div class="about"><b>About Netcom Media</b>AI chatbots, websites and automation for growing businesses. This assistant was built by Netcom Media.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Ask about land in Lagos. Get answers now.</h1>
+    <p class="lead">Meet Ada, the ESTY assistant. Speak or type to learn about plots in Ibeju-Lekki, Epe and Ikorodu, and our health supplements.</p>
+
+    <div class="stage">
+      <aside class="avatar-box" aria-label="Ada, ESTY AI assistant">
+        <div class="avatar">
+          <span class="ring"></span><span class="ring2"></span>
+          <img id="avatarImg" src="avatar.jpg" alt="Ada, the ESTY AI assistant" onerror="this.style.display='none';document.getElementById('avatarFb').style.display='flex'">
+          <div class="avatar-fallback" id="avatarFb" aria-hidden="true">A</div>
+        </div>
+        <div class="name">Ada</div>
+        <div class="role">ESTY AI assistant</div>
+        <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div id="status" role="status" aria-live="polite">Ready. Tap the mic or type a message.</div>
+        <button class="talkbtn" id="micBig" type="button">
+          <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          <span id="micBigLabel">Tap to talk to Ada</span>
+        </button>
+      </aside>
+
+      <section class="chat" id="chat" aria-label="Chat with Ada">
+        <div class="chat-top">
+          <h2><span></span>Chat with Ada</h2>
+          <button class="ghost" id="voiceToggle" aria-pressed="true" type="button">Voice on</button>
+        </div>
+        <div id="log" aria-live="polite"></div>
+        <div class="chips" id="chips">
+          <button class="chip" type="button">Lands for sale</button>
+          <button class="chip" type="button">Prices and payment plans</button>
+          <button class="chip" type="button">Health supplements</button>
+          <button class="chip" type="button">Book a site inspection</button>
+        </div>
+        <div class="composer">
+          <button class="iconbtn" id="micBtn" type="button" aria-label="Speak to Ada">
+            <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          </button>
+          <input id="msgInput" type="text" placeholder="Type your message..." autocomplete="off" aria-label="Type your message">
+          <button class="send" id="sendBtn" type="button" aria-label="Send message">
+            <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div>
+      <h2>Lands we sell</h2>
+      <p class="sub">Affordable plots in fast-growing parts of Lagos. Ask Ada about sizes, payment plans and inspection dates.</p>
+      <div class="photos">
+        <figure class="photo"><img src="land.jpg" alt="Land available in Lagos" loading="lazy" onerror="this.parentElement.style.display='none'"></figure>
+        <figure class="photo"><img src="house.jpg" alt="Beautiful modern house" loading="lazy" onerror="this.parentElement.style.display='none'"></figure>
+      </div>
+      <ul class="places">
+        <li><div><b>Ibeju-Lekki</b><span>Close to the Lekki corridor and the Lekki Free Trade Zone</span></div><button class="ghost" data-ask="Tell me about lands in Ibeju-Lekki" type="button">Ask Ada</button></li>
+        <li><div><b>Epe</b><span>Quiet, growing area with room to build</span></div><button class="ghost" data-ask="Tell me about lands in Epe" type="button">Ask Ada</button></li>
+        <li><div><b>Ikorodu</b><span>Well connected to the mainland and the ferry routes</span></div><button class="ghost" data-ask="Tell me about lands in Ikorodu" type="button">Ask Ada</button></li>
+      </ul>
+    </div>
+    <div class="supp">
+      <h2>Health supplements</h2>
+      <p class="sub">Daily wellness products from ESTY. Ada can tell you what is available and take your order details.</p>
+      <figure class="photo"><img src="supplements.jpg" alt="ESTY health supplement bottles" loading="lazy" onerror="this.parentElement.style.display='none'"></figure>
+      <ul>
+        <li>Ask about products and how to order</li>
+        <li>Leave your WhatsApp number for a follow-up</li>
+        <li>Delivery details shared by our team</li>
+      </ul>
+      <button class="talk-cta" id="ctaTalk" type="button">Talk to Ada</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr"></span> ESTY Business Consultant, Lagos</span>
+    <span>AI assistant by Netcom Media</span>
+  </div>
+</footer>
+
 <script>
-const WORKER_URL = "https://esty-test.netcommed.workers.dev";
+/* ============ SETTINGS: edit these ============ */
+const CONFIG = {
+  whatsapp: "234XXXXXXXXXX",          // ESTY WhatsApp number, country code first, no + or spaces
+  agentName: "Ada",
+  business: "ESTY Business Consultant"
+};
+/* ================================================ */
 
-const chatbox = document.getElementById('chatbox');
-const statusEl = document.getElementById('status');
-const talkBtn = document.getElementById('talkBtn');
-const input = document.getElementById('msgInput');
+const $ = id => document.getElementById(id);
+const log = $('log'), input = $('msgInput'), statusEl = $('status');
 const synth = window.speechSynthesis;
-let history = [];
 let voiceOn = true;
-let voices = [];
-let rec = null;
+let lead = { name:"", phone:"", interest:"" };
+let awaiting = "";     // "name" | "phone" | ""
+let done = false;      // lead captured and handed to WhatsApp
+let busy = false;
 
-function loadVoices(){ voices = synth ? synth.getVoices() : []; }
-if (synth) { loadVoices(); synth.onvoiceschanged = loadVoices; }
+$('yr').textContent = new Date().getFullYear();
 
-function pickVoice(){
-  const en = voices.filter(v => /^en/i.test(v.lang));
-  return en.find(v => /female|zira|samantha|susan|hazel|aria|jenny|google uk english female/i.test(v.name))
-      || en.find(v => /en-(NG|GB|ZA)/i.test(v.lang))
-      || en[0] || null;
-}
-
-function unlockAudio(){
-  if (!synth) return;
-  try {
-    const u = new SpeechSynthesisUtterance(" ");
-    u.volume = 0;
-    synth.speak(u);
-  } catch(e){}
-}
-
-function speak(text){
-  if (!synth || !voiceOn) return;
-  synth.cancel();
-  const u = new SpeechSynthesisUtterance(text.replace(/[*_#`]/g,''));
-  const v = pickVoice();
-  if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-US"; }
-  u.pitch = 1.2; u.rate = 0.95; u.volume = 1;
-  u.onstart = () => statusEl.innerText = "🔊 Ada speaking...";
-  u.onend = () => statusEl.innerText = "✅ Done. Tap or type again";
-  u.onerror = () => statusEl.innerText = "✅ Done. Tap or type again";
-  synth.speak(u);
-  if (synth.paused) synth.resume();
-}
-
-document.getElementById('voiceToggle').onclick = function(){
-  voiceOn = !voiceOn;
-  this.innerText = "🔊 Ada's voice: " + (voiceOn ? "ON" : "OFF");
-  if (!voiceOn && synth) synth.cancel();
-  else unlockAudio();
+/* ---------- Ada's built-in brain (no API) ---------- */
+const R = {
+  greet: () => `Hello! I'm ${CONFIG.agentName}, the assistant for ${CONFIG.business}. We sell affordable lands in Ibeju-Lekki, Epe and Ikorodu, and health supplements. Are you interested in property or supplements?`,
+  land: () => `We have plots in Ibeju-Lekki, Epe and Ikorodu. Each area suits a different budget and plan, whether you want to build a home or hold the land as an investment. Which area interests you most?`,
+  lekki: () => `Ibeju-Lekki is one of our most popular areas, close to the Lekki corridor and the Lekki Free Trade Zone. It suits both homes and long-term investment. Would you like to see available plots?`,
+  epe: () => `Epe is a growing area with more space and gentler prices. Many buyers choose it to build a home or hold land for the future. Would you like details on available plots?`,
+  ikorodu: () => `Ikorodu is well connected to the mainland and the ferry routes, which makes it popular with people who work in the city. Would you like details on available plots?`,
+  price: () => `Prices depend on the location and plot size, and we offer payment plans on many plots. Our team will send you the current price list on WhatsApp so you get the latest figures.`,
+  docs: () => `Our lands come with documentation, and our team will explain every document before you pay. You are also welcome to have your own lawyer check everything. Would you like to book a site inspection?`,
+  inspect: () => `We organise site inspections so you can see the land before you buy. Our team will confirm the next inspection date with you on WhatsApp.`,
+  supp: () => `We also offer health supplements for daily wellness. Our team can tell you what is available, how to use each product and how to order. Would you like to place an enquiry?`,
+  contact: () => `The fastest way to reach our team is on WhatsApp. Share your name and number here and I will pass your enquiry on.`,
+  thanks: () => `You're welcome! Is there anything else you would like to know about our lands or supplements?`,
+  bye: () => `Thank you for visiting ${CONFIG.business}. Have a great day!`,
+  fallback: () => `I can help with lands in Ibeju-Lekki, Epe and Ikorodu, prices, documents, site inspections and our health supplements. What would you like to know?`
 };
 
-function addLine(who, text){
-  const p = document.createElement('p');
-  const b = document.createElement('b');
-  b.textContent = who + ": ";
-  p.appendChild(b);
-  p.appendChild(document.createTextNode(text));
-  chatbox.appendChild(p);
-  chatbox.scrollTop = chatbox.scrollHeight;
-}
+const rules = [
+  [/\b(hi|hello|hey|good (morning|afternoon|evening)|howdy|how far)\b/, "greet"],
+  [/ibeju|lekki/, "lekki"],
+  [/\bepe\b/, "epe"],
+  [/ikorodu/, "ikorodu"],
+  [/(price|cost|how much|pay|payment|instal|plan|cheap|afford|naira|budget)/, "price"],
+  [/(document|title|c of o|survey|deed|paper|legal|genuine|safe|scam|trust)/, "docs"],
+  [/(inspect|visit|site|see the land|view)/, "inspect"],
+  [/(supplement|health|vitamin|herbal|wellness|drug|product|capsule|tea|immune)/, "supp"],
+  [/(land|plot|property|estate|real estate|house|acre|sqm|buy|invest)/, "land"],
+  [/(contact|whatsapp|call|phone|number|reach|office|address|where are you|location)/, "contact"],
+  [/(thank|thanks|nice|great|ok thanks)/, "thanks"],
+  [/\b(bye|goodbye|see you|later)\b/, "bye"]
+];
 
-async function askAda(txt){
-  addLine("You", txt);
-  history.push({ role: "user", text: txt });
-  statusEl.innerText = "🤖 Ada thinking...";
-  try {
-    const r = await fetch(WORKER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: history })
-    });
-    const d = await r.json();
-    if (!d.reply) throw new Error(d.error || "No reply");
-    history.push({ role: "model", text: d.reply });
-    addLine("Ada", d.reply);
-    speak(d.reply);
-    if (!voiceOn) statusEl.innerText = "✅ Done. Tap or type again";
-  } catch (err) {
-    history.pop();
-    statusEl.innerText = "⚠️ Ada is unavailable right now. Please try again or WhatsApp us.";
+function detectIntent(t){
+  for (const [re, key] of rules) if (re.test(t)) return key;
+  return "fallback";
+}
+function trackInterest(key){
+  if (["land","lekki","epe","ikorodu","docs","inspect","price"].includes(key)) lead.interest = lead.interest || "Land";
+  if (key === "supp") lead.interest = lead.interest === "Land" ? "Land and supplements" : "Supplements";
+  if (key === "lekki") lead.area = "Ibeju-Lekki";
+  if (key === "epe") lead.area = "Epe";
+  if (key === "ikorodu") lead.area = "Ikorodu";
+}
+function extractPhone(t){
+  const digits = t.replace(/[^\d+]/g,"");
+  const m = digits.match(/\+?\d{10,15}/);
+  return m ? m[0] : "";
+}
+function extractName(t){
+  const m = t.match(/(?:my name is|i am|i'm|im|this is|call me)\s+([a-z][a-z'-]+(?:\s[a-z][a-z'-]+)?)/i);
+  if (m) return cap(m[1]);
+  if (awaiting === "name") {
+    const clean = t.replace(/[^a-z\s'-]/gi,"").trim();
+    if (clean && clean.split(/\s+/).length <= 3) return cap(clean);
   }
+  return "";
+}
+const cap = s => s.replace(/\b\w/g, c => c.toUpperCase());
+
+function whatsappLink(){
+  const lines = [
+    `Hello ${CONFIG.business}, I chatted with ${CONFIG.agentName} on your website.`,
+    `Name: ${lead.name}`,
+    `Phone: ${lead.phone}`,
+    lead.interest ? `Interested in: ${lead.interest}` : "",
+    lead.area ? `Area: ${lead.area}` : ""
+  ].filter(Boolean).join("\n");
+  return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(lines)}`;
 }
 
-function sendTyped(){
-  const t = input.value.trim();
-  if (!t) return;
-  unlockAudio();
-  input.value = "";
-  askAda(t);
-}
-document.getElementById('sendBtn').onclick = sendTyped;
-input.addEventListener('keydown', e => { if (e.key === "Enter") sendTyped(); });
+function reply(userText){
+  const t = userText.toLowerCase();
+  const phone = extractPhone(userText);
+  const name = extractName(userText);
 
-function startAgent(){
-  unlockAudio();
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { statusEl.innerText = "Voice input not supported here. Please type instead."; input.focus(); return; }
+  if (name && !lead.name) lead.name = name;
+  if (phone && !lead.phone) lead.phone = phone;
+
+  // Lead capture complete
+  if (lead.name && lead.phone && !done){
+    done = true; awaiting = "";
+    return { text: `Thank you, ${lead.name}. I have your number as ${lead.phone}. Tap the button below to send your details to our team on WhatsApp and they will follow up with prices and inspection dates.`, cta: true };
+  }
+
+  // Waiting for a specific detail
+  if (awaiting === "phone" && !phone && !/(price|land|suppl|inspect)/.test(t)){
+    return { text: `Please type your WhatsApp number with the country code, for example 2348012345678.` };
+  }
+
+  const key = detectIntent(t);
+  trackInterest(key);
+  let text = R[key]();
+
+  // Steer toward the goal: collect name, then WhatsApp number
+  if (!["bye","thanks"].includes(key) && !done){
+    if (!lead.name){ text += `\n\nMay I have your name?`; awaiting = "name"; }
+    else if (!lead.phone){ text += `\n\nWhat is your WhatsApp number, ${lead.name}?`; awaiting = "phone"; }
+  } else if (done && key !== "bye"){
+    return { text, cta: true };
+  }
+  return { text };
+}
+
+/* ---------- Chat UI ---------- */
+function addMsg(text, who, cta){
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.textContent = text;
+  if (cta){
+    const a = document.createElement('a');
+    a.className = 'cta'; a.href = whatsappLink(); a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = 'Send my details on WhatsApp';
+    d.appendChild(document.createElement('br')); d.appendChild(a);
+  }
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+}
+function showTyping(){
+  const t = document.createElement('div');
+  t.className = 'typing'; t.id = 'typing'; t.innerHTML = '<i></i><i></i><i></i>';
+  log.appendChild(t); log.scrollTop = log.scrollHeight;
+}
+function hideTyping(){ const t = $('typing'); if (t) t.remove(); }
+
+function handleUser(text){
+  text = text.trim();
+  if (!text || busy) return;
+  stopListening();
   if (synth) synth.cancel();
-  rec = new SR(); rec.lang = "en-US"; rec.interimResults = false;
-  talkBtn.innerText = "🔴 LISTENING...";
-  statusEl.innerText = "🎤 Listening...";
-  rec.onresult = e => askAda(e.results[0][0].transcript);
-  rec.onerror = () => { statusEl.innerText = "Couldn't hear you. Tap again or type."; };
-  rec.onend = () => { talkBtn.innerText = "🎤 TAP TO TALK TO ADA"; };
-  rec.start();
+  setSpeaking(false);
+  addMsg(text, 'you');
+  input.value = '';
+  $('chips').style.display = 'none';
+  busy = true;
+  setStatus('Ada is typing...');
+  showTyping();
+  const r = reply(text);
+  setTimeout(() => {
+    hideTyping();
+    addMsg(r.text, 'ada', r.cta);
+    busy = false;
+    speak(r.text);
+  }, 600 + Math.min(900, r.text.length * 4));
 }
+
+/* ---------- Voice out ---------- */
+let voices = [];
+function loadVoices(){ if (synth) voices = synth.getVoices(); }
+if (synth){ loadVoices(); synth.onvoiceschanged = loadVoices; }
+function pickVoice(){
+  const en = voices.filter(v => /^en/i.test(v.lang));
+  return en.find(v => /(female|zira|samantha|aria|jenny|google uk english female|natural)/i.test(v.name))
+      || en.find(v => /en-(NG|GB|ZA)/i.test(v.lang)) || en[0] || null;
+}
+function setSpeaking(on){
+  document.body.classList.toggle('speaking', on);
+  if (on) setStatus('Ada is speaking...');
+  else if (!document.body.classList.contains('listening')) setStatus('Ready. Tap the mic or type a message.');
+}
+function setStatus(t){ statusEl.textContent = t; }
+
+function speak(text){
+  if (!voiceOn || !synth || !window.SpeechSynthesisUtterance){ setStatus('Ready. Tap the mic or type a message.'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice(); if (v) u.voice = v;
+  u.lang = v ? v.lang : 'en-US';
+  u.rate = 1; u.pitch = 1.05;
+  u.onstart = () => setSpeaking(true);
+  u.onend = u.onerror = () => setSpeaking(false);
+  synth.speak(u);
+}
+
+/* ---------- Voice in ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, listening = false;
+function stopListening(){
+  if (rec && listening){ try{ rec.stop(); }catch(e){} }
+  listening = false; document.body.classList.remove('listening');
+}
+function startListening(){
+  if (!SR){ setStatus('Voice input is not supported in this browser. Please type instead.'); input.focus(); return; }
+  if (synth) synth.cancel(); setSpeaking(false);
+  rec = new SR();
+  rec.lang = 'en-NG';
+  rec.interimResults = false; rec.maxAlternatives = 1;
+  rec.onstart = () => { listening = true; document.body.classList.add('listening'); setStatus('Listening... speak now'); };
+  rec.onresult = e => { const t = e.results[0][0].transcript; listening = false; document.body.classList.remove('listening'); handleUser(t); };
+  rec.onerror = e => {
+    listening = false; document.body.classList.remove('listening');
+    setStatus(e.error === 'not-allowed' ? 'Microphone blocked. Allow mic access or type instead.' : 'Could not hear you. Tap the mic and try again.');
+  };
+  rec.onend = () => { listening = false; document.body.classList.remove('listening'); };
+  try{ rec.start(); }catch(e){}
+}
+
+/* ---------- Events ---------- */
+const toggleMic = () => listening ? stopListening() : startListening();
+$('micBtn').addEventListener('click', toggleMic);
+$('micBig').addEventListener('click', toggleMic);
+new MutationObserver(() => {
+  $('micBigLabel').textContent = document.body.classList.contains('listening') ? 'Listening... tap to stop' : 'Tap to talk to Ada';
+}).observe(document.body, {attributes:true, attributeFilter:['class']});
+$('sendBtn').addEventListener('click', () => handleUser(input.value));
+input.addEventListener('keydown', e => { if (e.key === 'Enter') handleUser(input.value); });
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => handleUser(c.textContent)));
+document.querySelectorAll('[data-ask]').forEach(b => b.addEventListener('click', () => {
+  $('chat').scrollIntoView({behavior:'smooth', block:'center'});
+  handleUser(b.dataset.ask);
+}));
+$('ctaTalk').addEventListener('click', () => { $('chat').scrollIntoView({behavior:'smooth', block:'center'}); input.focus(); });
+$('voiceToggle').addEventListener('click', e => {
+  voiceOn = !voiceOn;
+  e.currentTarget.setAttribute('aria-pressed', voiceOn);
+  e.currentTarget.textContent = voiceOn ? 'Voice on' : 'Voice off';
+  if (!voiceOn && synth){ synth.cancel(); setSpeaking(false); }
+});
+
+/* ---------- Opening message ---------- */
+addMsg(R.greet(), 'ada');
 </script>
 </body>
 </html>
